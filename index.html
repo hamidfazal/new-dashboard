@@ -80,6 +80,60 @@
   }
   .back-link:hover{ color:var(--gold); border-color:var(--gold); }
 
+  /* Bio */
+  .bio-section{
+    display:flex;
+    align-items:center;
+    gap:36px;
+    max-width:780px;
+    margin:0 auto 44px;
+    padding-bottom:40px;
+    border-bottom:1px solid var(--border);
+    text-align:left;
+  }
+  .bio-photo{
+    flex-shrink:0;
+    width:148px;
+    height:148px;
+    border-radius:50%;
+    overflow:hidden;
+    border:2px solid var(--gold);
+    box-shadow:0 8px 28px rgba(0,0,0,0.4);
+  }
+  .bio-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .bio-text-block .bio-name{
+    font-size:1.3rem;
+    color:var(--text-main);
+    margin-bottom:4px;
+  }
+  .bio-text-block .bio-credentials{
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    font-size:0.78rem;
+    letter-spacing:0.05em;
+    color:var(--gold);
+    text-transform:uppercase;
+    margin-bottom:14px;
+  }
+  .bio-text-block .bio-desc{
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    font-size:0.88rem;
+    color:var(--text-muted);
+    line-height:1.75;
+  }
+  @media (max-width:600px){
+    .bio-section{
+      flex-direction:column;
+      text-align:center;
+      gap:18px;
+    }
+    .bio-photo{ width:120px; height:120px; }
+  }
+
   /* Search */
   .search-bar{
     max-width:480px;
@@ -274,6 +328,23 @@
       and lifestyle medicine — organized by topic for ongoing teaching and review.
     </p>
     <a class="back-link" href="https://hamidfazal.github.io/">&larr; Back to Portfolio</a>
+
+    <div class="bio-section">
+      <div class="bio-photo">
+        <img src="https://i.ibb.co/Wvk1qLDZ/IMG-20260522-WA0003.jpg" alt="Dr. Hamid Fazal">
+      </div>
+      <div class="bio-text-block">
+        <div class="bio-name">Dr. Hamid Fazal</div>
+        <div class="bio-credentials">MBBS, ECFMG Certified, PGD (Nutrition)</div>
+        <p class="bio-desc">
+          Dr. Hamid Fazal is a physician working at the intersection of internal medicine,
+          psychiatry, and community mental health. His clinical experience spans critical care,
+          chronic disease management, CKD and dialysis services, and psychiatric practice. His
+          academic interests include neuropsychiatry, cognitive aging, dementia, nutrition in
+          chronic disease, and the complex relationship between physical and mental health.
+        </p>
+      </div>
+    </div>
 
     <div class="search-bar">
       <input type="text" id="searchInput" placeholder="Search topics (e.g. lithium, anxiety, diabetes)…" autocomplete="off">
