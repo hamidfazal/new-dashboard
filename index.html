@@ -1,89 +1,744 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medical Lectures & Clinical Resources</title>
-    <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #333; background-color: #fcfcfc; }
-        h1 { border-bottom: 3px solid #0066cc; padding-bottom: 12px; color: #111; font-size: 2em; }
-        h2 { margin-top: 35px; color: #2c3e50; border-bottom: 1px solid #ddd; padding-bottom: 6px; font-size: 1.4em; }
-        ul { list-style-type: none; padding-left: 0; }
-        li { margin-bottom: 18px; padding: 10px; background: #fff; border-left: 4px solid #0066cc; border-radius: 0 4px 4px 0; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
-        li.public-health { border-left-color: #27ae60; }
-        li.psychiatry { border-left-color: #8e44ad; }
-        li.endocrinology { border-left-color: #e67e22; }
-        a { color: #0066cc; text-decoration: none; font-weight: bold; font-size: 1.1em; }
-        a:hover { text-decoration: underline; }
-        .desc { color: #555; font-size: 0.95em; display: block; margin-top: 4px; font-style: normal; }
-        blockquote { background: #f0f7ff; border-left: 4px solid #0066cc; margin: 20px 0; padding: 12px; font-style: italic; color: #444; border-radius: 4px; }
-        .footer-note { margin-top: 50px; font-size: 0.9em; color: #777; border-top: 1px solid #eee; padding-top: 15px; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clinical Lectures & Medical Education Series | Dr. Hamid Fazal</title>
+<style>
+  :root{
+    --navy-950:#0a0e1a;
+    --navy-900:#0d1326;
+    --navy-800:#131a33;
+    --navy-700:#1b2444;
+    --navy-600:#26315c;
+    --gold:#c9a14a;
+    --gold-bright:#e0bb63;
+    --text-main:#e8e9ee;
+    --text-muted:#9aa3bf;
+    --text-faint:#6b7494;
+    --border:#26305a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--navy-950);
+    background-image:
+      radial-gradient(ellipse at top, rgba(201,161,74,0.07), transparent 55%),
+      radial-gradient(ellipse at bottom right, rgba(38,49,92,0.25), transparent 50%);
+    color:var(--text-main);
+    font-family: 'Georgia', 'Iowan Old Style', serif;
+    line-height:1.6;
+    min-height:100vh;
+  }
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:64px 28px 96px;
+  }
+
+  /* Header */
+  header{
+    text-align:center;
+    margin-bottom:40px;
+    padding-bottom:36px;
+    border-bottom:1px solid var(--border);
+  }
+  .eyebrow{
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.22em;
+    font-size:11px;
+    color:var(--gold);
+    margin-bottom:14px;
+  }
+  h1{
+    font-size:2.3rem;
+    font-weight:400;
+    color:var(--text-main);
+    letter-spacing:0.01em;
+    margin-bottom:14px;
+  }
+  h1 em{ color:var(--gold-bright); font-style:normal; }
+  .subtitle{
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    color:var(--text-muted);
+    font-size:0.95rem;
+    max-width:620px;
+    margin:0 auto;
+    line-height:1.7;
+  }
+  .back-link{
+    display:inline-block;
+    margin-top:22px;
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    font-size:0.8rem;
+    letter-spacing:0.04em;
+    color:var(--text-faint);
+    text-decoration:none;
+    border-bottom:1px solid transparent;
+    transition:all .2s ease;
+  }
+  .back-link:hover{ color:var(--gold); border-color:var(--gold); }
+
+  /* Search */
+  .search-bar{
+    max-width:480px;
+    margin:32px auto 0;
+    position:relative;
+  }
+  .search-bar input{
+    width:100%;
+    background:var(--navy-800);
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:13px 16px;
+    color:var(--text-main);
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    font-size:0.92rem;
+    outline:none;
+    transition:border-color .2s ease;
+  }
+  .search-bar input::placeholder{ color:var(--text-faint); }
+  .search-bar input:focus{ border-color:var(--gold); }
+  .search-count{
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    font-size:0.75rem;
+    color:var(--text-faint);
+    text-align:center;
+    margin-top:10px;
+  }
+
+  /* Nav pills */
+  .nav-pills{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:8px;
+    margin:28px 0 8px;
+  }
+  .nav-pill{
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    font-size:0.74rem;
+    letter-spacing:0.03em;
+    color:var(--text-muted);
+    background:var(--navy-800);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:6px 13px;
+    text-decoration:none;
+    transition:all .2s ease;
+    white-space:nowrap;
+  }
+  .nav-pill span{
+    color:var(--gold);
+    margin-left:4px;
+  }
+  .nav-pill:hover{
+    border-color:var(--gold);
+    color:var(--text-main);
+  }
+
+  /* Category sections */
+  .category{
+    margin-top:52px;
+  }
+  .category-header{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:20px;
+    scroll-margin-top:20px;
+  }
+  .category-title{
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    font-size:0.78rem;
+    text-transform:uppercase;
+    letter-spacing:0.16em;
+    color:var(--gold);
+    white-space:nowrap;
+  }
+  .category-count{
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    font-size:0.72rem;
+    color:var(--text-faint);
+    white-space:nowrap;
+  }
+  .category-line{
+    flex:1;
+    height:1px;
+    background:linear-gradient(to right, var(--border), transparent);
+  }
+
+  .card-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(270px, 1fr));
+    gap:14px;
+  }
+
+  .card{
+    display:block;
+    background:linear-gradient(160deg, var(--navy-800), var(--navy-900));
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:18px 20px;
+    text-decoration:none;
+    color:inherit;
+    transition:border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+    position:relative;
+    overflow:hidden;
+  }
+  .card::before{
+    content:"";
+    position:absolute;
+    top:0; left:0;
+    width:3px; height:100%;
+    background:var(--gold);
+    opacity:0;
+    transition:opacity .2s ease;
+  }
+  .card:hover{
+    border-color:var(--gold);
+    transform:translateY(-2px);
+    box-shadow:0 10px 28px rgba(0,0,0,0.35);
+  }
+  .card:hover::before{ opacity:1; }
+
+  .card-title{
+    font-size:1.02rem;
+    color:var(--text-main);
+    margin-bottom:6px;
+    font-weight:400;
+    line-height:1.4;
+  }
+  .card-desc{
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    font-size:0.78rem;
+    color:var(--text-muted);
+    line-height:1.5;
+  }
+
+  .card.hidden{ display:none; }
+  .category.hidden{ display:none; }
+
+  /* Footer */
+  footer{
+    margin-top:72px;
+    padding-top:28px;
+    border-top:1px solid var(--border);
+    text-align:center;
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    font-size:0.78rem;
+    color:var(--text-faint);
+  }
+  footer a{ color:var(--text-faint); }
+
+  /* Back to top */
+  .to-top{
+    position:fixed;
+    bottom:24px;
+    right:24px;
+    background:var(--navy-800);
+    border:1px solid var(--gold);
+    color:var(--gold);
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    font-size:0.7rem;
+    letter-spacing:0.04em;
+    text-decoration:none;
+    padding:10px 16px;
+    border-radius:20px;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .25s ease;
+    z-index:50;
+  }
+  .to-top.visible{ opacity:0.92; pointer-events:auto; }
+  .to-top:hover{ background:var(--navy-700); }
+
+  @media (max-width:600px){
+    .wrap{padding:44px 18px 72px;}
+    h1{font-size:1.6rem;}
+    .card-grid{grid-template-columns:1fr;}
+    .nav-pills{ justify-content:flex-start; overflow-x:auto; flex-wrap:nowrap; padding-bottom:6px; }
+  }
+</style>
 </head>
 <body>
+<div class="wrap">
 
-    <h1>📚 Medical Lectures & Clinical Resources</h1>
-    <blockquote>A centralized directory of evidence-based lecture notes, clinical guides, and tools.</blockquote>
+  <header>
+    <div class="eyebrow">Dr. Hamid Fazal · MBBS · ECFMG Certified</div>
+    <h1>Clinical Lectures & <em>Medical Education Series</em></h1>
+    <p class="subtitle">
+      A working library of physician-focused lecture notes, clinical reasoning cases, and reference
+      material spanning psychiatry, psychopharmacology, endocrine and metabolic medicine, neurology,
+      and lifestyle medicine — organized by topic for ongoing teaching and review.
+    </p>
+    <a class="back-link" href="https://hamidfazal.github.io/">&larr; Back to Portfolio</a>
 
-    <h2>🥦 Nutrition, Metabolism & Weight Management</h2>
-    <ul>
-        <li>
-            <a href="https://hamidfazal.github.io/obesity-meds/" target="_blank">Obesity Pharmacotherapy 2026</a>
-            <span class="desc">Clinical review of anti-obesity medications and medical management strategies.</span>
-        </li>
-        <li>
-            <a href="https://hamidfazal.github.io/emotional-eating/" target="_blank">Obesity, Food Addiction & Emotional Eating</a>
-            <span class="desc">Exploring the psychological, neurobiological, and behavioral drivers of eating patterns.</span>
-        </li>
-        <li>
-            <a href="https://hamidfazal.github.io/weight/" target="_blank">Complete Weight Loss Guide</a>
-            <span class="desc">A Simple Doctor-Guided Program for Healthy Fat Loss.</span>
-        </li>
-        <li>
-            <a href="https://hamidfazal.github.io/diet/" target="_blank">Complete Weight Loss Guide For The General Public</a>
-            <span class="desc">Patient education resource for evidence-based dietary modifications.</span>
-        </li>
-    </ul>
-
-    <h2>🩸 Endocrinology & Chronic Disease Management</h2>
-    <ul>
-        <li class="endocrinology">
-            <a href="https://hamidfazal.github.io/DM-homeopathy/" target="_blank">Diabetes Management & Homeopathy</a>
-            <span class="desc">Evidence-based analysis and clinical perspective on homeopathy claims in diabetes care.</span>
-        </li>
-        <li class="endocrinology">
-            <a href="https://hamidfazal.github.io/DM-hrebal/" target="_blank">Diabetes Management & Herbal Medicine</a>
-            <span class="desc">Reviewing the biochemical impact, efficacy, and safety profile of herbal alternatives in glycemic control.</span>
-        </li>
-    </ul>
-
-    <h2>🧠 Nutritional Psychiatry & Lifestyle Medicine</h2>
-    <ul>
-        <li>
-            <a href="https://hamidfazal.github.io/nutrition-psych/" target="_blank">Nutritional Psychiatry (Clinical Overview)</a>
-            <span class="desc">The Role of Diet, Gut Health & Metabolism in Mental Illness.</span>
-        </li>
-        <li>
-            <a href="https://hamidfazal.github.io/nutri-science/" target="_blank">Nutritional Psychiatry (Scientific Foundations)</a>
-            <span class="desc">Deep-dive into the biochemical pathways linking gut health and mental health.</span>
-        </li>
-        <li>
-            <a href="https://hamidfazal.github.io/exercise/" target="_blank">Exercise Prescription for Physicians</a>
-            <span class="desc">A Practical, Evidence-Based Clinical Lecture for Doctors.</span>
-        </li>
-    </ul>
-
-    <h2>🇵🇰 Public Health & Regional Nutrition</h2>
-    <ul>
-        <li class="public-health">
-            <a href="https://hamidfazal.github.io/protein/" target="_blank">Protein Deficiency in Pakistani Diets</a>
-            <span class="desc">Analysis of dietary trends, macronutrient gaps, and clinical solutions for the local population.</span>
-        </li>
-    </ul>
-
-    <div class="footer-note">
-        <p>📝 <strong>Reviewer Note:</strong> Pages are updated regularly to reflect evolving clinical data. Peer feedback or content verification can be coordinated directly.</p>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search topics (e.g. lithium, anxiety, diabetes)…" autocomplete="off">
+      <div class="search-count" id="searchCount"></div>
     </div>
+
+    <nav class="nav-pills">
+      <a href="#mood-disorders" class="nav-pill">Mood Disorders <span>4</span></a>
+      <a href="#anxiety-somatic-disorders" class="nav-pill">Anxiety &amp; Somatic Disorders <span>9</span></a>
+      <a href="#psychotic-disorders" class="nav-pill">Psychotic Disorders <span>2</span></a>
+      <a href="#movement-disorders" class="nav-pill">Movement Disorders <span>2</span></a>
+      <a href="#neuropsychiatry" class="nav-pill">Neuropsychiatry <span>9</span></a>
+      <a href="#neurology" class="nav-pill">Neurology <span>3</span></a>
+      <a href="#psychopharmacology" class="nav-pill">Psychopharmacology <span>12</span></a>
+      <a href="#endocrine-metabolic-medicine" class="nav-pill">Endocrine &amp; Metabolic Medicine <span>11</span></a>
+      <a href="#lifestyle-nutritional-medicine" class="nav-pill">Lifestyle &amp; Nutritional Medicine <span>10</span></a>
+      <a href="#internal-medicine-integrative-topics" class="nav-pill">Internal Medicine &amp; Integrative Topics <span>5</span></a>
+      <a href="#digital-health-ai" class="nav-pill">Digital Health &amp; AI <span>3</span></a>
+    </nav>
+  </header>
+
+
+  <section class="category" id="mood-disorders">
+    <div class="category-header">
+      <span class="category-title">Mood Disorders</span>
+      <span class="category-count">4 topics</span>
+      <span class="category-line"></span>
+    </div>
+    <div class="card-grid">
+      <a class="card" href="https://hamidfazal.github.io/RMDD/" target="_blank" rel="noopener" data-title="understanding treatment-resistant depression (trd)">
+        <div class="card-title">Understanding Treatment-Resistant Depression (TRD)</div>
+        
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/MDD-Rx/" target="_blank" rel="noopener" data-title="major depressive disorder (mdd)">
+        <div class="card-title">Major Depressive Disorder (MDD)</div>
+        
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/ptsd-Rx/" target="_blank" rel="noopener" data-title="post-traumatic stress disorder (ptsd)">
+        <div class="card-title">Post-Traumatic Stress Disorder (PTSD)</div>
+        
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/Bipolar-Affective-Disorder-/" target="_blank" rel="noopener" data-title="bipolar affective disorder">
+        <div class="card-title">Bipolar Affective Disorder</div>
+        
+      </a>
+    </div>
+  </section>
+
+
+  <section class="category" id="anxiety-somatic-disorders">
+    <div class="category-header">
+      <span class="category-title">Anxiety & Somatic Disorders</span>
+      <span class="category-count">9 topics</span>
+      <span class="category-line"></span>
+    </div>
+    <div class="card-grid">
+      <a class="card" href="https://hamidfazal.github.io/somatoform-/" target="_blank" rel="noopener" data-title="somatic symptom and related disorders (ssrd)">
+        <div class="card-title">Somatic Symptom and Related Disorders (SSRD)</div>
+        
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/anxity-notes/" target="_blank" rel="noopener" data-title="anxiety disorders, gad &amp; panic attack">
+        <div class="card-title">Anxiety Disorders, GAD &amp; Panic Attack</div>
+        
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/medical/" target="_blank" rel="noopener" data-title="hidden medical causes of anxiety">
+        <div class="card-title">Hidden Medical Causes of Anxiety</div>
+        
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/ocd-Rx/" target="_blank" rel="noopener" data-title="clinical guide: obsessive-compulsive disorder (ocd)">
+        <div class="card-title">Clinical Guide: Obsessive-Compulsive Disorder (OCD)</div>
+        
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/GAD-case/" target="_blank" rel="noopener" data-title="generalized anxiety disorder (gad): clinical reasoning case">
+        <div class="card-title">Generalized Anxiety Disorder (GAD): Clinical Reasoning Case</div>
+        <div class="card-desc">Dr. Hamid Fazal's Clinical Reasoning &amp; Medical Education Series</div>
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/css/" target="_blank" rel="noopener" data-title="central sensitization syndromes (css)">
+        <div class="card-title">Central Sensitization Syndromes (CSS)</div>
+        
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/Primarycare-Anxiety-/" target="_blank" rel="noopener" data-title="anxiety disorders for primary care physicians">
+        <div class="card-title">Anxiety Disorders for Primary Care Physicians</div>
+        
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/unexplain/" target="_blank" rel="noopener" data-title="approach to medically unexplained symptoms (mus)">
+        <div class="card-title">Approach to Medically Unexplained Symptoms (MUS)</div>
+        <div class="card-desc">A Practical Physician’s Guide</div>
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/fibromyalgia-/" target="_blank" rel="noopener" data-title="fibromyalgia &amp; chronic pain syndromes">
+        <div class="card-title">Fibromyalgia &amp; Chronic Pain Syndromes</div>
+        <div class="card-desc">Comprehensive Physician Lecture Notes (2025–2026 Update)</div>
+      </a>
+    </div>
+  </section>
+
+
+  <section class="category" id="psychotic-disorders">
+    <div class="category-header">
+      <span class="category-title">Psychotic Disorders</span>
+      <span class="category-count">2 topics</span>
+      <span class="category-line"></span>
+    </div>
+    <div class="card-grid">
+      <a class="card" href="https://hamidfazal.github.io/Schizo-case/" target="_blank" rel="noopener" data-title="stable schizophrenia on multiple medications">
+        <div class="card-title">Stable Schizophrenia on Multiple Medications</div>
+        
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/schizophrenia-/" target="_blank" rel="noopener" data-title="schizophrenia: dsm-5-tr diagnosis &amp; pharmacological management">
+        <div class="card-title">Schizophrenia: DSM-5-TR Diagnosis &amp; Pharmacological Management</div>
+        
+      </a>
+    </div>
+  </section>
+
+
+  <section class="category" id="movement-disorders">
+    <div class="category-header">
+      <span class="category-title">Movement Disorders</span>
+      <span class="category-count">2 topics</span>
+      <span class="category-line"></span>
+    </div>
+    <div class="card-grid">
+      <a class="card" href="https://hamidfazal.github.io/Parkinson-case/" target="_blank" rel="noopener" data-title="clinical reasoning case series">
+        <div class="card-title">Clinical Reasoning Case Series</div>
+        
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/parkinson-/" target="_blank" rel="noopener" data-title="parkinson's disease">
+        <div class="card-title">Parkinson's Disease</div>
+        <div class="card-desc">Levodopa/Carbidopa + Trihexyphenidyl (Hexidyl)</div>
+      </a>
+    </div>
+  </section>
+
+
+  <section class="category" id="neuropsychiatry">
+    <div class="category-header">
+      <span class="category-title">Neuropsychiatry</span>
+      <span class="category-count">9 topics</span>
+      <span class="category-line"></span>
+    </div>
+    <div class="card-grid">
+      <a class="card" href="https://hamidfazal.github.io/covid/" target="_blank" rel="noopener" data-title="long covid neuropsychiatric syndromes">
+        <div class="card-title">Long COVID Neuropsychiatric Syndromes</div>
+        
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/anxi/" target="_blank" rel="noopener" data-title="vitamin deficiencies that mimic psychiatric disease">
+        <div class="card-title">Vitamin Deficiencies That Mimic Psychiatric Disease</div>
+        
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/adhd-website/" target="_blank" rel="noopener" data-title="attention-deficit/hyperactivity disorder">
+        <div class="card-title">Attention-Deficit/Hyperactivity Disorder</div>
+        <div class="card-desc">Integrated Clinical Overview for Doctors &amp; Medical Students</div>
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/Depression-vs-Dementia/" target="_blank" rel="noopener" data-title="cognitive decline vs depression (“pseudodementia”)">
+        <div class="card-title">Cognitive Decline vs Depression (“Pseudodementia”)</div>
+        
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/depression-vs-fatique/" target="_blank" rel="noopener" data-title="fatigue vs depression">
+        <div class="card-title">Fatigue vs Depression</div>
+        
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/pysch/" target="_blank" rel="noopener" data-title="when fatigue is not depression">
+        <div class="card-title">When Fatigue Is NOT Depression</div>
+        
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/fog/" target="_blank" rel="noopener" data-title="understanding “brain fog”">
+        <div class="card-title">Understanding “Brain Fog”</div>
+        
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/psychoneuroimmunology/" target="_blank" rel="noopener" data-title="psychoneuroimmunology (pni)">
+        <div class="card-title">Psychoneuroimmunology (PNI)</div>
+        <div class="card-desc">Exploring the Interconnectedness of Mind, Brain, and Immunity</div>
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/inflammation-depression-/" target="_blank" rel="noopener" data-title="inflammation &amp; depression">
+        <div class="card-title">Inflammation &amp; Depression</div>
+        <div class="card-desc">A Modern Psychoneuroimmunology Lecture for Physicians</div>
+      </a>
+    </div>
+  </section>
+
+
+  <section class="category" id="neurology">
+    <div class="category-header">
+      <span class="category-title">Neurology</span>
+      <span class="category-count">3 topics</span>
+      <span class="category-line"></span>
+    </div>
+    <div class="card-grid">
+      <a class="card" href="https://hamidfazal.github.io/epilepsy-/" target="_blank" rel="noopener" data-title="epilepsy in clinical practice">
+        <div class="card-title">Epilepsy in Clinical Practice</div>
+        <div class="card-desc">A Practical Physician-Focused Lecture on Classification, Treatment Strategy &amp; Prescribing</div>
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/migraine-/" target="_blank" rel="noopener" data-title="migraine">
+        <div class="card-title">Migraine</div>
+        
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/wt2/" target="_blank" rel="noopener" data-title="neuropsychiatric dimensions of migraine">
+        <div class="card-title">Neuropsychiatric Dimensions of Migraine</div>
+        
+      </a>
+    </div>
+  </section>
+
+
+  <section class="category" id="psychopharmacology">
+    <div class="category-header">
+      <span class="category-title">Psychopharmacology</span>
+      <span class="category-count">12 topics</span>
+      <span class="category-line"></span>
+    </div>
+    <div class="card-grid">
+      <a class="card" href="https://hamidfazal.github.io/injectable-antipsychotics/" target="_blank" rel="noopener" data-title="long-acting injectable (lai) antipsychotics">
+        <div class="card-title">Long-Acting Injectable (LAI) Antipsychotics</div>
+        <div class="card-desc">Advanced Physician Lecture Notes</div>
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/polypharmacy/" target="_blank" rel="noopener" data-title="polypharmacy in psychiatry">
+        <div class="card-title">Polypharmacy in Psychiatry</div>
+        <div class="card-desc">A Practical, Evidence-Based Clinical Guide for Physicians and Healthcare Professionals.</div>
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/SSRI-advance/" target="_blank" rel="noopener" data-title="ssri advanced lecture notes for physicians">
+        <div class="card-title">SSRI Advanced Lecture Notes for Physicians</div>
+        
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/SNRI-advance/" target="_blank" rel="noopener" data-title="serotonin–norepinephrine reuptake inhibitors (snris)">
+        <div class="card-title">Serotonin–Norepinephrine Reuptake Inhibitors (SNRIs)</div>
+        
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/antipsychotics-oral/" target="_blank" rel="noopener" data-title="first-generation and second-generation antipsychotics">
+        <div class="card-title">First-Generation and Second-Generation Antipsychotics</div>
+        
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/clozapine-Rx/" target="_blank" rel="noopener" data-title="clozapine">
+        <div class="card-title">Clozapine</div>
+        <div class="card-desc">Advanced Physician Lecture Notes (2025–2026 Update, Pakistan-Focused)</div>
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/lithium-rx/" target="_blank" rel="noopener" data-title="lithium">
+        <div class="card-title">Lithium</div>
+        <div class="card-desc">Comprehensive Physician Lecture Notes (Clinical + Prescribing Focus, 2025–2026 Update)</div>
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/psych-effectsmed/" target="_blank" rel="noopener" data-title="psychiatric side effects of common medical drugs">
+        <div class="card-title">Psychiatric Side Effects of Common Medical Drugs</div>
+        
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/SNRI/" target="_blank" rel="noopener" data-title="snri (serotonin–norepinephrine reuptake inhibitors)">
+        <div class="card-title">SNRI (Serotonin–Norepinephrine Reuptake Inhibitors)</div>
+        <div class="card-desc">Advanced Lecture Notes for Physicians</div>
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/psychmeds/" target="_blank" rel="noopener" data-title="psychopharmacology pearls">
+        <div class="card-title">Psychopharmacology Pearls</div>
+        <div class="card-desc">A High-Yield Resource Guide for Primary Care Physicians and Residents</div>
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/elderly/" target="_blank" rel="noopener" data-title="polypharmacy &amp; drug interactions">
+        <div class="card-title">Polypharmacy &amp; Drug Interactions</div>
+        <div class="card-desc">in Elderly Patients — A Practical Clinical Resource and Decision Guide for Physicians, Residents, and Healthcare Professionals.</div>
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/LAI/" target="_blank" rel="noopener" data-title="lai antipsychotics lecture">
+        <div class="card-title">LAI Antipsychotics Lecture</div>
+        
+      </a>
+    </div>
+  </section>
+
+
+  <section class="category" id="endocrine-metabolic-medicine">
+    <div class="category-header">
+      <span class="category-title">Endocrine & Metabolic Medicine</span>
+      <span class="category-count">11 topics</span>
+      <span class="category-line"></span>
+    </div>
+    <div class="card-grid">
+      <a class="card" href="https://hamidfazal.github.io/fatty-liver-/" target="_blank" rel="noopener" data-title="fatty liver disease (masld/nafld)">
+        <div class="card-title">Fatty Liver Disease (MASLD/NAFLD)</div>
+        
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/anemia-website/" target="_blank" rel="noopener" data-title="iron deficiency anemia (ida)">
+        <div class="card-title">Iron Deficiency Anemia (IDA)</div>
+        <div class="card-desc">Comprehensive Clinical Review with Oral Iron Strategies, CKD &amp; Dialysis Guidelines</div>
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/DM-homeopathy/" target="_blank" rel="noopener" data-title="diabetes and homeopathic medicines">
+        <div class="card-title">Diabetes and Homeopathic Medicines</div>
+        
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/DM-hrebal/" target="_blank" rel="noopener" data-title="diabetes and traditional medicine">
+        <div class="card-title">Diabetes and Traditional Medicine</div>
+        <div class="card-desc">A Clinical Reference Guide on Efficacy, Risks, and Patient Counseling</div>
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/Sleep-DM-wt/" target="_blank" rel="noopener" data-title="how sleep affects diabetes &amp; weight gain">
+        <div class="card-title">How Sleep Affects Diabetes &amp; Weight Gain</div>
+        
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/pcocs/" target="_blank" rel="noopener" data-title="pcos beyond gynecology:">
+        <div class="card-title">PCOS Beyond Gynecology</div>
+        <div class="card-desc">A Systemic Endocrine–Metabolic–Inflammatory Condition</div>
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/nutrition-in-diabetes-/" target="_blank" rel="noopener" data-title="nutrition management in diabetes">
+        <div class="card-title">Nutrition Management in Diabetes</div>
+        
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/DM-neuropathy/" target="_blank" rel="noopener" data-title="diabetic neuropathy (dn)">
+        <div class="card-title">Diabetic Neuropathy (DN)</div>
+        <div class="card-desc">A GP Physician Lecture Review (2025–2026 Update)</div>
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/metabolic-syndrome-/" target="_blank" rel="noopener" data-title="metabolic syndrome: the root disease">
+        <div class="card-title">Metabolic Syndrome: The Root Disease</div>
+        <div class="card-desc">Comprehensive Lecture Notes for Physicians</div>
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/obesity-meds/" target="_blank" rel="noopener" data-title="obesity pharmacotherapy 2026">
+        <div class="card-title">Obesity Pharmacotherapy 2026</div>
+        <div class="card-desc">A Physician-Oriented Clinical Review</div>
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/hif-phi-review/" target="_blank" rel="noopener" data-title="hif-phi (hypoxia-inducible factor prolyl hydroxylase inhibitors)">
+        <div class="card-title">HIF-PHI (Hypoxia-Inducible Factor Prolyl Hydroxylase Inhibitors)</div>
+        <div class="card-desc">Special Focus on Roxadustat in CKD &amp; Dialysis Patients</div>
+      </a>
+    </div>
+  </section>
+
+
+  <section class="category" id="lifestyle-nutritional-medicine">
+    <div class="category-header">
+      <span class="category-title">Lifestyle & Nutritional Medicine</span>
+      <span class="category-count">10 topics</span>
+      <span class="category-line"></span>
+    </div>
+    <div class="card-grid">
+      <a class="card" href="https://hamidfazal.github.io/wt/" target="_blank" rel="noopener" data-title="why patients fail to lose weight">
+        <div class="card-title">Why Patients Fail to Lose Weight</div>
+        <div class="card-desc">A Comprehensive Biopsychosocial Guide for Clinicians</div>
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/food/" target="_blank" rel="noopener" data-title="food as a psychoactive substance">
+        <div class="card-title">Food as a Psychoactive Substance</div>
+        <div class="card-desc">Exploring the impact of dietary patterns on neurotransmitters, neuroinflammation, and mental health biology.</div>
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/nutri-science/" target="_blank" rel="noopener" data-title="nutritional psychiatry">
+        <div class="card-title">Nutritional Psychiatry</div>
+        <div class="card-desc">The Role of Diet, Gut Health &amp; Metabolism in Mental Illness</div>
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/nutrition-psych/" target="_blank" rel="noopener" data-title="nutritional psychiatry">
+        <div class="card-title">Nutritional Psychiatry</div>
+        <div class="card-desc">The Role of Diet, Gut Health &amp; Metabolism in Mental Illness</div>
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/lifestyle-pysch/" target="_blank" rel="noopener" data-title="lifestyle psychiatry">
+        <div class="card-title">Lifestyle Psychiatry</div>
+        
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/exercise/" target="_blank" rel="noopener" data-title="exercise prescription for physicians">
+        <div class="card-title">Exercise Prescription for Physicians</div>
+        <div class="card-desc">A Practical, Evidence-Based Clinical Lecture for Doctors</div>
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/emotional-eating/" target="_blank" rel="noopener" data-title="obesity, food addiction &amp; emotional eating">
+        <div class="card-title">Obesity, Food Addiction &amp; Emotional Eating</div>
+        <div class="card-desc">A Comprehensive Physician Lecture &amp; Clinical Reference</div>
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/diet/" target="_blank" rel="noopener" data-title="complete weight loss guide for the general public">
+        <div class="card-title">Complete Weight Loss Guide For The General Public</div>
+        <div class="card-desc">A Simple Doctor-Guided Program for Healthy Fat Loss</div>
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/weight/" target="_blank" rel="noopener" data-title="complete weight loss guide">
+        <div class="card-title">Complete Weight Loss Guide</div>
+        <div class="card-desc">A Simple Doctor-Guided Program for Healthy Fat Loss</div>
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/weight-loss-/" target="_blank" rel="noopener" data-title="4-week pakistani diet plan for weight loss">
+        <div class="card-title">4-Week Pakistani Diet Plan for Weight Loss</div>
+        
+      </a>
+    </div>
+  </section>
+
+
+  <section class="category" id="internal-medicine-integrative-topics">
+    <div class="category-header">
+      <span class="category-title">Internal Medicine & Integrative Topics</span>
+      <span class="category-count">5 topics</span>
+      <span class="category-line"></span>
+    </div>
+    <div class="card-grid">
+      <a class="card" href="https://hamidfazal.github.io/Bladder-control-reference-/" target="_blank" rel="noopener" data-title="bladder control &amp; integrative medicine">
+        <div class="card-title">Bladder Control &amp; Integrative Medicine</div>
+        
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/erectile-dysfunction-/" target="_blank" rel="noopener" data-title="sexual dysfunction in clinical practice">
+        <div class="card-title">Sexual Dysfunction in Clinical Practice</div>
+        
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/prokinetics-rx/" target="_blank" rel="noopener" data-title="prokinetic agents">
+        <div class="card-title">Prokinetic Agents</div>
+        <div class="card-desc">Prescribing Guidelines &amp; Clinical Review for Physicians</div>
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/HTN/" target="_blank" rel="noopener" data-title="hypertension: diagnosis and treatment options">
+        <div class="card-title">Hypertension: Diagnosis and Treatment Options</div>
+        
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/sleep/" target="_blank" rel="noopener" data-title="insomnia management for physicians">
+        <div class="card-title">Insomnia Management for Physicians</div>
+        <div class="card-desc">A Comprehensive Clinical Lecture for General Physicians &amp; Primary Care Doctors</div>
+      </a>
+    </div>
+  </section>
+
+
+  <section class="category" id="digital-health-ai">
+    <div class="category-header">
+      <span class="category-title">Digital Health & AI</span>
+      <span class="category-count">3 topics</span>
+      <span class="category-line"></span>
+    </div>
+    <div class="card-grid">
+      <a class="card" href="https://hamidfazal.github.io/digital/" target="_blank" rel="noopener" data-title="digital psychiatry">
+        <div class="card-title">DIGITAL PSYCHIATRY</div>
+        
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/mentalhealth-socialmedia/" target="_blank" rel="noopener" data-title="how social media is affecting mental health">
+        <div class="card-title">How Social Media Is Affecting Mental Health</div>
+        <div class="card-desc">A Clinical &amp; Public Health Perspective for Physicians</div>
+      </a>
+      <a class="card" href="https://hamidfazal.github.io/AI-med/" target="_blank" rel="noopener" data-title="ai in clinical practice for doctors">
+        <div class="card-title">AI in Clinical Practice for Doctors</div>
+        
+      </a>
+    </div>
+  </section>
+
+
+  <footer>
+    &copy; 2026 Dr. Hamid Fazal &middot; For educational and clinical reference purposes
+  </footer>
+
+</div>
+
+<a href="#" class="to-top" id="toTop">&uarr; Top</a>
+
+<script>
+  const searchInput = document.getElementById('searchInput');
+  const searchCount = document.getElementById('searchCount');
+  const cards = Array.from(document.querySelectorAll('.card'));
+  const categories = Array.from(document.querySelectorAll('.category'));
+
+  function applyFilter(){
+    const q = searchInput.value.trim().toLowerCase();
+    let visibleCount = 0;
+
+    categories.forEach(cat => {
+      const catCards = Array.from(cat.querySelectorAll('.card'));
+      let catVisible = 0;
+      catCards.forEach(card => {
+        const title = card.getAttribute('data-title') || '';
+        const text = card.textContent.toLowerCase();
+        const match = q === '' || title.includes(q) || text.includes(q);
+        card.classList.toggle('hidden', !match);
+        if(match){ catVisible++; visibleCount++; }
+      });
+      cat.classList.toggle('hidden', catVisible === 0);
+    });
+
+    searchCount.textContent = q === '' ? '' : (visibleCount + ' topic' + (visibleCount === 1 ? '' : 's') + ' found');
+  }
+
+  searchInput.addEventListener('input', applyFilter);
+
+  // Back to top visibility
+  const toTop = document.getElementById('toTop');
+  window.addEventListener('scroll', () => {
+    toTop.classList.toggle('visible', window.scrollY > 600);
+  });
+</script>
 
 </body>
 </html>
